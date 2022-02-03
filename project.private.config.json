@@ -1,0 +1,36 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "商品",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "寻物",
+          "pathName": "pages/serch/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的",
+          "pathName": "pages/mine/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

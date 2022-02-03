@@ -1,0 +1,43 @@
+<swiper autoplay indicator-dots circular>
+    <swiper-item
+            wx:for="{{swiperList}}"
+            wx:key="goods_id"
+    >
+        <navigator url="{{item.navigator_url}}">
+            <image mode="widthFix" src="{{item.image_src}}"></image>
+        </navigator>
+    </swiper-item>
+</swiper>
+<van-grid>
+    <van-grid-item icon="photo-o" text="分类"/>
+    <van-grid-item icon="photo-o" text="秒杀"/>
+    <van-grid-item icon="photo-o" text="附近"/>
+    <van-grid-item icon="photo-o" text="抢购"/>
+</van-grid>
+
+<view style="height: 60vh;display: flex; justify-content: space-around;">
+    <view style="height: 60vh;width:20%;">
+        <van-sidebar active-key="{{ activeKey }}">
+            <van-sidebar-item wx:for="{{labels}}" wx:key="idx" bind:tap="ChangeBar" title="{{item.name}}"
+                              data-index="{{item.idx}}"/>
+        </van-sidebar>
+    </view>
+    <view style=" height: 60vh;width: 80%;">
+        <swiper current="{{activeKey}}"  style="height: 100%">
+            <swiper-item wx:for="{{labels}}" indicator-dots="false"  autoplay="false">
+                <van-card
+                        num="{{item.num}}"
+                        tag="{{item.tag}}"
+                        price="{{item.price}}"
+                        desc="{{item.desc}}"
+                        title="{{item.title}}"
+                        thumb="{{item.imageURL }}"
+                        wx:for="{{goods[activeKey]}}"
+                >
+                </van-card>
+            </swiper-item>
+
+        </swiper>
+
+    </view>
+</view>

@@ -1,0 +1,17 @@
+<view wx:for="{{dynamicList}}" wx:for-item="dynamic">
+    <view class="cu-list menu-avatar" >
+    <view class="cu-item" >
+        <view class="cu-avatar round lg" style="background-image:url({{dynamic.avatar}});"></view>
+        <view class="content flex-sub">
+            <view>{{dynamic.name}}</view>
+            <view class="text-gray text-sm flex justify-between">
+                {{dynamic.time}}
+            </view>
+        </view>
+
+    </view>
+</view>
+<view class="text-content padding" bindtap="addComment" style="background-color: white;">
+            {{dynamic.content}}
+        </view>
+        </view>
