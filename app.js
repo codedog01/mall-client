@@ -9,19 +9,26 @@ App({
             title: 'logining',
           })
           wx.request({
-            method: "GET",
+            method: "POST",
             url:'http://localhost:8080/api/user/login', 
-            data: {
-              code: res.code
-            },
+            data: res.code,
             success: function (res) {
-              that.globalData.user = res.data.data;
-              if (that.checkCallback) {
-              that.checkCallback(user);
+              if(res.data.success){
+                wx.setStorageSync('openId', res.data.data.openId)
+                that.globalData.user = res.data.data;
+                if (that.checkCallback) {
+                that.checkCallback(user);
+                }
+                wx.showToast({
+                  title: 'login success',
+                })
+              }else{
+                wx.showToast({
+                  title: 'login failure',
+                })
               }
-              wx.showToast({
-                title: 'login success',
-              })
+
+
             },
             fail:function(){
               wx.showToast({

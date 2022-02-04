@@ -17,8 +17,12 @@ Page({
 
     Publish() {
         let res = this.data.imgList.map(async (imgItem, index) => {
-            const img = await imgUtil.toBase64(imgItem)
-            return img
+            var img = await imgUtil.toBase64(imgItem)
+            console.log(img)
+            return {
+                'imgBase64': img,
+                'sort': index
+            }
         })
 
         Promise.all(res).then(value => {
@@ -29,7 +33,7 @@ Page({
                 num: this.data.num,
                 type: this.data.columns[this.data.columnsIndex],
                 openId: APP.globalData.user.openId,
-                imgList: res
+                imgList: value
             }).then(() => {
                 this.toastClick(true, "发布成功~")
             }).catch(() => {
@@ -76,26 +80,6 @@ Page({
                     })
                 }
             }
-        })
-    },
-    InputName(e) {
-        this.setData({
-            name: e.detail.value
-        })
-    },
-    InputDes(e) {
-        this.setData({
-            describle: e.detail.value
-        })
-    },
-    InputPrice(e) {
-        this.setData({
-            price: e.detail.value
-        })
-    },
-    InputNum(e) {
-        this.setData({
-            num: e.detail.value
         })
     },
     RegionChange: function (e) {

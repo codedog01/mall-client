@@ -1,33 +1,29 @@
 <van-cell-group>
     <van-field
-            value="{{ name }}"
+            model:value="{{ name }}"
             clearable
             label="名称"
             placeholder="名称"
-            bind:click-icon="InputName"
     />
     <van-field
-            value="{{ describle }}"
+            model:value="{{ describle }}"
             label="详情"
             type="textarea"
             placeholder="详情"
             autosize
             border="{{ false }}"
-            bind:click-icon="InputDes"
     />
     <van-field
-            value="{{ price }}"
+            model:value="{{ price }}"
             clearable
             label="价格"
             placeholder="价格"
-            bind:click-icon="InputPrice"
     />
     <van-field
-            value="{{ num }}"
+            model:value="{{ num }}"
             clearable
             label="数量"
             placeholder="数量"
-            bind:click-icon="InputNum"
     />
     <view class="cu-form-group {{extraClass}}">
         <view class="title">商品类型</view>
