@@ -1,1 +1,58 @@
-<van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+<van-cell-group>
+    <van-field
+            value="{{ name }}"
+            clearable
+            label="名称"
+            placeholder="名称"
+            bind:click-icon="InputName"
+    />
+    <van-field
+            value="{{ describle }}"
+            label="详情"
+            type="textarea"
+            placeholder="详情"
+            autosize
+            border="{{ false }}"
+            bind:click-icon="InputDes"
+    />
+    <van-field
+            value="{{ price }}"
+            clearable
+            label="价格"
+            placeholder="价格"
+            bind:click-icon="InputPrice"
+    />
+    <van-field
+            value="{{ num }}"
+            clearable
+            label="数量"
+            placeholder="数量"
+            bind:click-icon="InputNum"
+    />
+    <view class="cu-form-group {{extraClass}}">
+        <view class="title">商品类型</view>
+        <picker bindchange="RegionChange" value="{{columnsIndex}}" range="{{columns}}" id='{{id}}'>
+            <view class="picker">
+                {{columns[columnsIndex]}}
+            </view>
+        </picker>
+    </view>
+</van-cell-group>
+<view class="cu-form-group ">
+
+    <view class="grid col-3 grid-square flex-sub">
+        <view class="bg-img " wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+            <image src='{{imgList[index]}}' mode='aspectFill'></image>
+            <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                <text class="cuIcon-close"></text>
+            </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<9}}">
+            <text class="cuIcon-cameraadd" style="background: #EEEEEE; "></text>
+        </view>
+    </view>
+</view>
+
+<l-button lg bgColor="green" block bindtap="Publish">发布</l-button>
+
+<l-toast id="toast"></l-toast>

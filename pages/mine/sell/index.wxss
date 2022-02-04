@@ -1,1 +1,6 @@
-/* pages/mine/sell/index.wxss */
+page {
+
+    background-color: #ffffff
+}
+
+

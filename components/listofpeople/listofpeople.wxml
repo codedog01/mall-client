@@ -1,0 +1,96 @@
+<l-sticky top="0">
+    <scroll-view scroll-x class="bg-green nav text-center" fixed="true">
+        <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
+            <text class="cuIcon-camerafill"></text>
+            {{titleA}}
+        </view>
+        <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
+            <text class="cuIcon-upstagefill"></text>
+            {{titleB}}
+        </view>
+        <view wx:if="{{exist3}}" class="cu-item {{2==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="2">
+            <text class="cuIcon-upstagefill"></text>
+            {{titleC}}
+        </view>
+        <view wx:if="{{exist4}}" class="cu-item {{3==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="3">
+            <text class="cuIcon-upstagefill"></text>
+            {{titleD}}
+        </view>
+    </scroll-view>
+</l-sticky>
+
+<scroll-view class="scroll-list" scroll-y bindscroll="scroll" style="height: 1000rpx" scroll-with-animation="true"
+  enable-back-to-top="true">
+  <block wx:for="{{list[i].data}}" wx:key="list[i].i">
+    <!-- 第一个{{list[i].i}} -->
+    <view class="scroll-item">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg">
+            <image src="{{item.avatar}}" mode="aspectFit" class="bg" />
+          </view>
+          <view class="content flex-sub">
+            <view class="text-grey">{{item.name}}</view>
+            <view class="text-gray text-sm flex justify-between">
+              {{item.time}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:for="{{list[i + 1].data}}" wx:key="list[i + 1].i">
+    <!-- 第二个{{list[i + 1].i}} -->
+    <view class="scroll-item">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg">
+            <image src="{{item.avatar}}" mode="aspectFit" class="bg" />
+          </view>
+          <view class="content flex-sub">
+            <view class="text-grey">{{item.name}}</view>
+            <view class="text-gray text-sm flex justify-between">
+              {{item.time}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:for="{{list[i + 2].data}}" wx:key="list[i + 2].i">
+    <!-- 第三个{{list[i + 2].i}} -->
+    <view class="scroll-item">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg">
+            <image src="{{item.avatar}}" mode="aspectFit" class="bg" />
+          </view>
+          <view class="content flex-sub">
+            <view class="text-grey">{{item.name}}</view>
+            <view class="text-gray text-sm flex justify-between">
+              {{item.time}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:for="{{list[i + 3].data}}" wx:key="list[i + 3].i">
+  <!-- 第四个{{list[i + 3].i}} -->
+    <view class="scroll-item">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg">
+            <image src="{{item.avatar}}" mode="aspectFit" class="bg" />
+          </view>
+          <view class="content flex-sub">
+            <view class="text-grey">{{item.name}}</view>
+            <view class="text-gray text-sm flex justify-between">
+              {{item.time}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>

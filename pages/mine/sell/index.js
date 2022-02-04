@@ -1,23 +1,106 @@
+const APP = getApp()
+const imgUtil = require("../../../utils/imgUtil")
+const API = require("../../../servers/api")
 Page({
-  data: {
-    fileList: [],
-  },
+    data: {
+        columnsIndex: 0,
+        columns: ['衣服', '鞋子', '首饰', '手机', '电脑', '外设', '其他'],
+        imgList: [],
+    },
 
+    onReady() {
+        this.toast = this.selectComponent("#toast");
+    },
+    toastClick(flag, mes, timeout) {
+        this.toast.setShow(flag ? "success" : "error", mes, timeout);
+    },
 
-  afterRead(event) {
-    const { file } = event.detail;
-    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-    wx.uploadFile({
-      url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-      filePath: file.url,
-      name: 'file',
-      formData: { user: 'test' },
-      success(res) {
-        // 上传完成需要更新 fileList
-        const { fileList = [] } = this.data;
-        fileList.push({ ...file, url: res.data });
-        this.setData({ fileList });
-      },
-    });
-  },
+    Publish() {
+        let res = this.data.imgList.map(async (imgItem, index) => {
+            const img = await imgUtil.toBase64(imgItem)
+            return img
+        })
+
+        Promise.all(res).then(value => {
+            API.addGoods({
+                name: this.data.name,
+                describle: this.data.describle,
+                price: this.data.price,
+                num: this.data.num,
+                type: this.data.columns[this.data.columnsIndex],
+                openId: APP.globalData.user.openId,
+                imgList: res
+            }).then(() => {
+                this.toastClick(true, "发布成功~")
+            }).catch(() => {
+                this.toastClick(false, "发布失败~")
+            })
+        })
+
+    },
+    ChooseImage() {
+        wx.chooseImage({
+            count: 9, //默认9
+            sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album'], //从相册选择
+            success: (res) => {
+                if (this.data.imgList.length !== 0) {
+                    this.setData({
+                        imgList: this.data.imgList.concat(res.tempFilePaths)
+                    })
+                } else {
+                    this.setData({
+                        imgList: res.tempFilePaths
+                    })
+                }
+            }
+        });
+    },
+    ViewImage(e) {
+        wx.previewImage({
+            urls: this.data.imgList,
+            current: e.currentTarget.dataset.url
+        });
+    },
+    DelImg(e) {
+        wx.showModal({
+            title: '同学',
+            content: '确定要删除这图片吗？',
+            cancelText: '再看看',
+            confirmText: '再见',
+            success: res => {
+                if (res.confirm) {
+                    this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+                    this.setData({
+                        imgList: this.data.imgList
+                    })
+                }
+            }
+        })
+    },
+    InputName(e) {
+        this.setData({
+            name: e.detail.value
+        })
+    },
+    InputDes(e) {
+        this.setData({
+            describle: e.detail.value
+        })
+    },
+    InputPrice(e) {
+        this.setData({
+            price: e.detail.value
+        })
+    },
+    InputNum(e) {
+        this.setData({
+            num: e.detail.value
+        })
+    },
+    RegionChange: function (e) {
+        this.setData({
+            columnsIndex: e.detail.value
+        })
+    },
 });

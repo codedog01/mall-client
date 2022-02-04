@@ -1,0 +1,25 @@
+<block wx:if="{{type == 'dynamic'}}">
+  <view class="cu-card dynamic {{isCard?'no-card':''}}" wx:for="{{_data}}" style="margin-top: 30rpx; border-radius: 30rpx;">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item" style="height: 70rpx;">
+          <view class="cu-avatar round " style="width: 50rpx;height: 50rpx; background-image:url({{item.avatar}});"></view>
+          <view class="content " style="left: 100rpx;">
+            <view>{{item.name}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="text-content" style="  width: 100%;text-overflow: ellipsis; display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical;text-align: justify;">
+        {{item.content}}
+      </view>
+      <view class="grid flex-sub padding-lr {{isCard?'col-3 grid-square':'col-1'}}">
+        <view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url({{item.avatar}});"></view>
+      </view>
+      <view class="text-gray text-sm  padding" style="display: flex;">
+        <text class="text-left">头像</text>
+        <text class="text-left" style="margin-left: 5%;">人正在打卡</text>
+        <text class="text-left text-lg text-bold" style="position:absolute;right: 10%;">></text>
+      </view>
+    </view>
+  </view>
+</block>

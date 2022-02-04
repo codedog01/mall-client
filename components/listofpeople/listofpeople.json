@@ -1,0 +1,4 @@
+{
+  "component": true,
+  "usingComponents": {"l-sticky":"../../components/sticky"}
+}

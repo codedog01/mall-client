@@ -1,0 +1,20 @@
+<scroll-view class="scroll-list" scroll-y scroll-top="500" bindscroll="scroll" style="height:100%" scroll-with-animation="true"
+  enable-back-to-top="true" >
+  <block wx:for="{{list}}" wx:key="openId" >
+    <view class="scroll-item" >
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg">
+            <image src="{{item.avatar}}" mode="aspectFit" class="bg" />
+          </view>
+          <view class="content flex-sub">
+            <view class="text-grey">{{item.nickName}}</view>
+            <view class="text-gray text-sm flex justify-between">
+              {{item.gender}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>

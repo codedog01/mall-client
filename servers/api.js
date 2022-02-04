@@ -7,12 +7,22 @@ const domain = 'http://localhost:8080/api'
 // const domain = 'http://1.15.184.191:8080/api'
 
 
-// 获取用户信息
-export function getUserInfo(data) {
-    return request.get(api.user_getUserInfo, data)
+// 查询商品
+export function selectGoods(data) {
+    return request.get(domain+"goods/selectAll", data)
 }
 
-// 修改用户信息
-export function updateUserInfo(data) {
-    return request.post(api.user_updateUserInfo, data)
+// 添加商品
+export function addGoods(data) {
+    return request.post(domain+"goods/addGoods", data)
+}
+
+// 发布动态
+export function addDynamic(data) {
+    return request.post(domain + "dynamic/addDynamic", data)
+}
+
+// 查询动态
+export function selectAll(data) {
+    return request.get(domain+"dynamic/selectAll", data)
 }

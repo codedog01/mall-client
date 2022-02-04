@@ -18,21 +18,21 @@
 <view style="height: 60vh;display: flex; justify-content: space-around;">
     <view style="height: 60vh;width:20%;">
         <van-sidebar active-key="{{ activeKey }}">
-            <van-sidebar-item wx:for="{{labels}}" wx:key="idx" bind:tap="ChangeBar" title="{{item.name}}"
-                              data-index="{{item.idx}}"/>
+            <van-sidebar-item wx:for="{{commodity}}" wx:key="idx" bind:tap="ChangeBar" title="{{item.label.name}}"
+                              data-index="{{item.label.idx}}"/>
         </van-sidebar>
     </view>
     <view style=" height: 60vh;width: 80%;">
         <swiper current="{{activeKey}}"  style="height: 100%">
-            <swiper-item wx:for="{{labels}}" indicator-dots="false"  autoplay="false">
+            <swiper-item wx:for="{{commodity}}" indicator-dots="false"  autoplay="false" >
                 <van-card
                         num="{{item.num}}"
                         tag="{{item.tag}}"
                         price="{{item.price}}"
                         desc="{{item.desc}}"
                         title="{{item.title}}"
-                        thumb="{{item.imageURL }}"
-                        wx:for="{{goods[activeKey]}}"
+                        thumb="{{item.thumb[0] }}"
+                        wx:for="{{item.goods}}"
                 >
                 </van-card>
             </swiper-item>
