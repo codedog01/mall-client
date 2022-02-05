@@ -1,2 +1,14 @@
-<!--pages/mine/search/index.wxml-->
-<text>pages/mine/search/index.wxml</text>
+<van-cell-group>
+  <van-field
+          model:value="{{ name }}"
+    label="标题"
+    placeholder="标题"
+  />
+</van-cell-group>
+
+<view class="cu-form-group  margin-top  " style="border: 0;">
+    <textarea maxlength='150'
+              bindinput="textareaInput" placeholder="说说你要找什么吧..." style="border:0px; background: #EEEEEE;padding: 30rpx; height:230rpx; border-radius: 20rpx"></textarea>
+</view>
+<l-button lg bgColor="green" block bindtap="Publish">发布</l-button>
+<l-toast id="toast"></l-toast>

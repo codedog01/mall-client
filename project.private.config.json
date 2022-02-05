@@ -20,7 +20,7 @@
         },
         {
           "name": "寻物",
-          "pathName": "pages/serch/index",
+          "pathName": "pages/mine/search/index",
           "query": "",
           "scene": null
         },
@@ -33,6 +33,12 @@
         {
           "name": "卖货",
           "pathName": "pages/mine/sell/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "寻物展示",
+          "pathName": "pages/search/index",
           "query": "",
           "scene": null
         }

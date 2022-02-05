@@ -25,20 +25,18 @@ Page({
      */
     onLoad: function (options) {
         API.selectDynamics().then(res => {
-          console.log(res);
-            const dynamicList = res.data.map(item => {
+            let data = {
+                dynamicList: this.data.dynamicList,
+            }
+            data.dynamicList = res.data.map(item => {
                 return {
                     avatar: item.avatar,
                     name: item.name,
-                    time: dayjs(parseInt(item.time)).format('YYYY年MM月DD日'),
+                    time: dayjs(parseInt(item.createTime)).format('YYYY年MM月DD日'),
                     content: item.content,
                 }
             })
-            this.setData({
-                dynamicList: dynamicList
-            })
+            this.setData(data)
         })
     },
-
-
 })

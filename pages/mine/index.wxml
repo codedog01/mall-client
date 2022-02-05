@@ -2,7 +2,7 @@
     <view class="UCenter-bg">
         <!-- 头像位置 -->
         <view class="cu-avatar round myavatar xl"
-              style="background-image:url({{avatarImage}});">
+              style="background-image:url({{avatarImage}});" bindtap="ChooseImage">
         </view>
         <view class="userinfo">
             <text class="margin-top-sm text-xl text-bold">{{nickName}}</text>

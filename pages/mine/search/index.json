@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "寻物",
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "l-button":"../../../components/button/index",
+    "l-toast":"../../../components/toast/index"
+  }
 }

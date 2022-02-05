@@ -26,3 +26,8 @@ export function addDynamic(data) {
 export function selectDynamics(data) {
     return request.get(domain+"dynamic/selectAll", data)
 }
+
+// 查询用户信息
+export function uploadAvatar(data) {
+    return request.get(domain + "user/getUserInfo", data)
+}
