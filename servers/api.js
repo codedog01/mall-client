@@ -23,6 +23,6 @@ export function addDynamic(data) {
 }
 
 // 查询动态
-export function selectAll(data) {
+export function selectDynamics(data) {
     return request.get(domain+"dynamic/selectAll", data)
 }
