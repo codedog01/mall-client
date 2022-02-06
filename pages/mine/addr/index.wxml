@@ -1,0 +1,17 @@
+<scroll-view style="height: 100%;" bindscrolltolower="scrollBottom" scroll-y='true' enable-flex="true">
+
+<view class="cu-list menu-avatar">
+  <view class="cu-item">
+    <view class="cu-avatar round lg" style="background-image:url({{item.avatar}});"></view>
+    <view class="content flex-sub">
+      <view>{{item.name}}</view>
+      <view class="text-gray text-sm flex justify-between">
+        {{item.time}}
+      </view>
+    </view>
+  </view>
+</view>
+<view class="text-content" data-idx="{{index}}" bindtap="navigateTo">
+  {{item.content}}
+</view>
+</scroll-view>

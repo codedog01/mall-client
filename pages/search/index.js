@@ -10,13 +10,7 @@ Page({
      */
     data: {
         dynamicList: [
-            {
-                avatar: "",
-                name: "张三",
-                time: "2020年1月30日",
-                content: "贱卖了贱卖了",
-                title: "标题"
-            }
+
         ]
     },
 

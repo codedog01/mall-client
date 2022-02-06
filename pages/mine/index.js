@@ -10,10 +10,16 @@ Page({
         avatarImage: '游客B627',
         nickName: '游客B627'
     },
-    onLoad(query) {
-        API.uploadAvatar({
-            avatarImage: this.data.avatarImage,
-            openId: APP.globalData.user.openId,
+    // avatarImage: this.data.avatarImage,
+    onLoad() {
+        API.getUserInfo({
+            openId: APP.globalData.user.openId
+        }).then(res=>{
+          console.log(res);
+          this.setData({
+            avatarImage: res.data.avatar,
+            nickName: res.data.nickName
+          })
         })
     },
     ChooseImage(e) {
@@ -33,20 +39,12 @@ Page({
                 })
                 //上传图片
                 wx.uploadFile({
-                    //请求后台的路径
-                    url: "http://localhost:8080/api/",
-                    //小程序本地的路径
+                    url: "http://localhost:8080/api/user/uploadAvatar",
                     filePath: tempFilePaths,
-                    //后台获取我们图片的key
-                    name: 'avatar',
-                    //额外的参数formData
+                    name: 'avatarImage',
                     formData: {
                         'openId': wx.getStorageSync('openId'),
-                    },
-                    success: function (res) {
-                        //上传成功
-                        avatarImage = tempFilePaths
-                    },
+                    }
                 })
             }
         });

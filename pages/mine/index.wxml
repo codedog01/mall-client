@@ -32,32 +32,32 @@
 
         <view class="cu-list grid col-3 ">
             <view class="cu-item">
+                <view class="cuIcon-cart ">
+                    <text>购物车</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="cuIcon-home">
+                    <text>我的地址</text>
+                </view>
+            </view>
+            <view class="cu-item">
                 <view class="cuIcon-check ">
                     <text>已完成</text>
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-recharge " >
-                    <text>待支付</text>
-                </view>
-            </view>
-            <view class="cu-item">
-                <view class="cuIcon-loading" >
-                    <text>售后</text>
-                </view>
-            </view>
-            <view class="cu-item">
-                <view class="cuIcon-phone"  >
+                <view class="cuIcon-phone">
                     <text>绑定手机</text>
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-form" >
+                <view class="cuIcon-form">
                     <text>商家入驻</text>
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-friend" >
+                <view class="cuIcon-friend">
                     <text>使用帮助</text>
                 </view>
             </view>
@@ -67,12 +67,12 @@
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-send" >
+                <view class="cuIcon-send">
                     <text>积分明细</text>
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-fold" >
+                <view class="cuIcon-fold">
                     <text>版本更新</text>
                 </view>
             </view>

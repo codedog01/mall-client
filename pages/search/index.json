@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "l-empty":"../../components/empty/index"
+  }
 }

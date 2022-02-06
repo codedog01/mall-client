@@ -4,7 +4,10 @@
     "pages/mine/index",
     "pages/search/index",
     "pages/mine/search/index",
-    "pages/mine/sell/index"
+    "pages/mine/sell/index",
+    "pages/home/goods_detail/index",
+    "pages/mine/cart/index",
+    "pages/mine/addr/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

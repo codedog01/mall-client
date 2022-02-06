@@ -18,7 +18,6 @@ Page({
     Publish() {
         let res = this.data.imgList.map(async (imgItem, index) => {
             var img = await imgUtil.toBase64(imgItem)
-            console.log(img)
             return {
                 'imgBase64': img,
                 'sort': index

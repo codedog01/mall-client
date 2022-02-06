@@ -1,0 +1,44 @@
+<view class="cu-list menu-avatar">
+    <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{goods.avatar}});"></view>
+        <view class="content flex-sub">
+            <view>{{goods.nickName}}</view>
+            <view class="text-gray text-sm flex justify-between">
+                {{goods.time}}
+            </view>
+        </view>
+
+    </view>
+</view>
+<view class="grid flex-sub padding-lr  grid-square {{goods.images.length!==1?'col-3':'col-1'}}">
+    <view wx:for="{{goods.images}}" class="bg-img "
+          style="background-image:url({{item}}); "
+    >
+    </view>
+</view>
+<view class="text-content padding" bindtap="addComment" style="background-color: white;">
+    {{goods.describle}}
+</view>
+
+
+<view class="" style="display: flex; justify-content: center;background-color: rgba(175, 175, 248,.1); line-height:50rpx;height: 100rpx;">
+    <view style="width: 75%;">
+        <view class="footer text-bold " style="display: flex;padding: 0 5px;">
+            <text class=" text-purple text-df ">Hot
+            </text>
+            <text class="text-cut text-df" style="width:90%; margin-left: 10rpx;">{{goods.name}}</text>
+        </view>
+        <view class="footer " style="display: flex;height: 50rpx; border-radius: 5px; padding: 0 5px;" space='true'>
+            <text>库存   {{goods.num}}</text>
+        </view>
+    </view>
+    <view class="text-lg text-right"
+          style=" color:#F40;width: 25%; display: flex;height: 100rpx; line-height: 100rpx; justify-content: space-around; margin-right: 30rpx;">
+        价格 <text class=" text-price">{{goods.price}}</text>
+    </view>
+</view>
+
+<l-button lg bgColor="green" block bindtap="AddLike">加入购物车</l-button>
+
+<l-toast id="toast"></l-toast>
+

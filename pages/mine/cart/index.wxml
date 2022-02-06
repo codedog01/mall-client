@@ -1,0 +1,3 @@
+<scroll-view style="height: 100%;" bindscrolltolower="scrollBottom" scroll-y='true' enable-flex="true">
+
+</scroll-view>
