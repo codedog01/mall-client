@@ -1,0 +1,10 @@
+<scroll-view style="height: 90vh;" bindscrolltolower="scrollBottom" scroll-y='true' enable-flex="true" refresher-enabled='true'
+             refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onPullDownRefresh" >
+    <l-empty data="{{goods}}"></l-empty>
+    <van-card wx:for="{{goods}}" num="{{item.num}}"  price="{{item.price}}" desc="{{item.describle}}" title="{{item.name}}"
+              thumb="{{item.images[0] }}">
+        <view slot="footer">
+            <van-button size="mini" bind:tap="DelDeal" data-likes_id="{{item.id}}">删除交易记录</van-button>
+        </view>
+    </van-card>
+</scroll-view>

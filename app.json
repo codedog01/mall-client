@@ -7,7 +7,8 @@
     "pages/mine/sell/index",
     "pages/home/goods_detail/index",
     "pages/mine/cart/index",
-    "pages/mine/addr/index"
+    "pages/mine/addr/index",
+    "pages/mine/finished/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,5 +1,4 @@
 
-
 const request = require("./request.js")
 var app = getApp();
 //项目URL相同部分，减轻代码量，同时方便项目迁移
@@ -53,3 +52,19 @@ export function getCart(data) {
 export function reduceLike(data) {
     return request.post(domain + "likes/reduceLike", data)
 }
+
+// 查询已完成交易
+export function getFinished(data) {
+    return request.get(domain + "likes/getFinished", data)
+}
+
+// 删除交易记录
+export function delDeal(data) {
+    return request.post(domain + "likes/delDeal", data)
+}
+
+// 清空购物车
+export function doDeal(data) {
+    return request.get(domain + "likes/doDeal", data)
+}
+

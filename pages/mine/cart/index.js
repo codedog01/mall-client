@@ -8,10 +8,34 @@ Page({
         totalPrice: 0,
     },
 
+    onReady() {
+        this.toast = this.selectComponent("#toast");
+    },
+    toastClick(flag, mes, timeout) {
+        this.toast.setShow(flag ? "success" : "error", mes, timeout);
+    },
+
+
+    onClickButton() {
+        API.doDeal({
+            openId: APP.globalData.user.openId,
+        }).then(()=>{
+            this.toastClick(true, "提交成功~")
+            API.getCart({
+                openId: APP.globalData.user.openId,
+            }).then(res => {
+                this.setData({
+                    goods: res.data
+                }).finally(this.calculateTotalPrice());
+            })
+        }).catch(()=>{
+            this.toastClick(true, "提交失败~")
+        })
+    },
     calculateTotalPrice() {
         const goods = this.data.goods;
         let totalPrice = 0;
-        let discount = "九五折";
+        let discount = "";
         goods.map(item => {
             totalPrice += item.price * item.num * 100;
         })
@@ -26,7 +50,7 @@ Page({
             discount = "九折"
         } else if (totalPrice >= 50000) {
             totalPrice *= 0.95
-            discount= "九五折"
+            discount = "九五折"
         }
         this.setData({
             totalPrice: totalPrice,

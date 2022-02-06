@@ -41,7 +41,7 @@
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-check " bindtap="navigateTo" data-url="./search/index">
+                <view class="cuIcon-check " bindtap="navigateTo" data-url="./finished/index">
                     <text>已完成</text>
                 </view>
             </view>

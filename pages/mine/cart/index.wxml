@@ -19,5 +19,7 @@
         tip="{{ true }}"
 >
     <van-tag type="primary" color="#f0a1a8" text-color="#7c1823">{{discount}}</van-tag>
-    <view slot="tip">您还尉填写收货地址, <text>点击填写地址</text></view>
+    <view slot="tip">您还没有填写收货地址, <text>点击填写地址</text></view>
 </van-submit-bar>
+
+<l-toast id="toast"></l-toast>
