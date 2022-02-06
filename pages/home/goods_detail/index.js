@@ -5,6 +5,13 @@ Page({
     toastClick(flag, mes, timeout) {
         this.toast.setShow(flag ? "success" : "error", mes, timeout);
     },
+    onReady() {
+        this.toast = this.selectComponent("#toast");
+      },
+      toastClick(flag, mes, timeout) {
+        this.toast.setShow(flag ? "success" : "error", mes, timeout);
+      },
+    
     AddLike() {
         API.addLike({
             goodsId: this.data.goods.id,

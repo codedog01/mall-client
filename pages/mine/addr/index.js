@@ -1,4 +1,6 @@
-// pages/mine/addr/index.js
+const APP = getApp()
+const imgUtil = require("../../../utils/imgUtil")
+const API = require("../../../servers/api")
 Page({
 
   /**

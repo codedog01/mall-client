@@ -29,20 +29,19 @@
                 </view>
             </view>
         </view>
-
         <view class="cu-list grid col-3 ">
             <view class="cu-item">
-                <view class="cuIcon-cart ">
+                <view class="cuIcon-cart " bindtap="navigateTo" data-url="./cart/index">
                     <text>购物车</text>
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-home">
+                <view class="cuIcon-home" bindtap="navigateTo" data-url="./addr/index">
                     <text>我的地址</text>
                 </view>
             </view>
             <view class="cu-item">
-                <view class="cuIcon-check ">
+                <view class="cuIcon-check " bindtap="navigateTo" data-url="./search/index">
                     <text>已完成</text>
                 </view>
             </view>

@@ -1,1 +1,4 @@
-/* pages/mine/cart/index.wxss */
+.footer{
+    display: flex;
+    justify-content: flex-end;
+}

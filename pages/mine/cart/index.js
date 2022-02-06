@@ -1,66 +1,122 @@
-// pages/mine/cart/index.js
+const APP = getApp()
+const imgUtil = require("../../../utils/imgUtil")
+const API = require("../../../servers/api")
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+    data: {
+        refresherTriggered: false,
+        totalPrice: 0,
+    },
 
-  },
+    calculateTotalPrice() {
+        const goods = this.data.goods;
+        let totalPrice = 0;
+        let discount = "九五折";
+        goods.map(item => {
+            totalPrice += item.price * item.num * 100;
+        })
+        if (totalPrice >= 200000) {
+            totalPrice *= 0.7
+            discount = "七折"
+        } else if (totalPrice >= 150000) {
+            totalPrice *= 0.8
+            discount = "八折"
+        } else if (totalPrice >= 90000) {
+            totalPrice *= 0.9
+            discount = "九折"
+        } else if (totalPrice >= 50000) {
+            totalPrice *= 0.95
+            discount= "九五折"
+        }
+        this.setData({
+            totalPrice: totalPrice,
+            discount: discount
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    onPullDownRefresh() {
+        API.getCart({
+            openId: APP.globalData.user.openId,
+        }).then(res => {
+            this.setData({
+                goods: res.data
+            })
+        }).finally(() => {
+                this.setData({
+                    refresherTriggered: false
+                })
+                this.calculateTotalPrice();
+            }
+        )
+    },
 
-  },
+    DelLike(e) {
+        wx.showModal({
+            title: '亲',
+            content: '确定要删除这件商品吗？',
+            cancelText: '点错了',
+            confirmText: '再见',
+            success: res => {
+                if (res.confirm) {
+                    let goods = this.data.goods;
+                    const one = goods[e.currentTarget.dataset.index]
+                    goods.splice(e.currentTarget.dataset.index, 1)
+                    this.setData({goods: goods})
+                    API.reduceLike({
+                        goodsId: e.currentTarget.dataset.likes_id,
+                        openId: APP.globalData.user.openId,
+                    }).catch(() => {
+                        goods.push(one)
+                        this.setData({goods: goods})
+                    }).finally(this.calculateTotalPrice());
+                }
+            }
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    AddLike(e) {
+        let goods = this.data.goods;
+        goods[e.currentTarget.dataset.index].num += 1;
+        this.setData({goods: goods})
+        API.addLike({
+            goodsId: e.currentTarget.dataset.likes_id,
+            openId: APP.globalData.user.openId,
+        }).catch(() => {
+            let goods = this.data.goods;
+            goods[e.currentTarget.dataset.index].num -= 1;
+            this.setData({goods: goods})
+        }).finally(this.calculateTotalPrice());
+    },
 
-  },
+    ReduceLike(e) {
+        const num = this.data.goods[e.currentTarget.dataset.index].num;
+        if (num === 1) {
+            this.DelLike(e);
+        } else {
+            let goods = this.data.goods;
+            goods[e.currentTarget.dataset.index].num -= 1;
+            this.setData({goods: goods})
+            API.reduceLike({
+                goodsId: e.currentTarget.dataset.likes_id,
+                openId: APP.globalData.user.openId,
+            }).catch(() => {
+                let goods = this.data.goods;
+                goods[e.currentTarget.dataset.index].num += 1;
+                this.setData({goods: goods})
+            }).finally(this.calculateTotalPrice());
+        }
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+    },
 
-  },
+    onLoad: function (options) {
+        API.getCart({
+            openId: APP.globalData.user.openId,
+        }).then(res => {
+            this.setData({
+                goods: res.data
+            }).finally(this.calculateTotalPrice());
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
