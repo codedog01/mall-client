@@ -59,6 +59,12 @@
           "pathName": "pages/mine/cart/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "地址添加",
+          "pathName": "pages/mine/addr/addr_detail/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

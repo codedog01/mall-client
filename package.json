@@ -4,6 +4,7 @@
   "description": "1",
   "main": ".eslintrc.js",
   "dependencies": {
+    "@vant/area-data": "^1.2.2",
     "@vant/weapp": "^1.10.2",
     "dayjs": "^1.10.7"
   },
