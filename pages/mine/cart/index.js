@@ -15,22 +15,38 @@ Page({
         this.toast.setShow(flag ? "success" : "error", mes, timeout);
     },
 
+    navigateToAddr() {
+        wx.navigateTo({
+            url: "../addr/index"
+        })
+    },
 
     onClickButton() {
+        if (!this.data.hasDefaultAddr) {
+            this.toastClick(false, "您还未选择收获地址~");
+            return;
+        }
         API.doDeal({
             openId: APP.globalData.user.openId,
-        }).then(()=>{
-            this.toastClick(true, "提交成功~")
-            API.getCart({
-                openId: APP.globalData.user.openId,
-            }).then(res => {
-                this.setData({
-                    goods: res.data
-                }).finally(this.calculateTotalPrice());
-            })
-        }).catch(()=>{
-            this.toastClick(true, "提交失败~")
-        })
+        }).then((res) => {
+            if (res.data <= 0) {
+                this.toastClick(false, "购物车为空~");
+            } else {
+                API.getCart({
+                    openId: APP.globalData.user.openId,
+                }).then(res => {
+                    this.toastClick(true, "提交成功~")
+                    this.setData({
+                        goods: res.data
+                    })
+                }).finally(() => {
+                    this.calculateTotalPrice()
+                });
+            }
+
+        }).catch(() => {
+            this.toastClick(false, "提交失败~")
+        });
     },
     calculateTotalPrice() {
         const goods = this.data.goods;
@@ -109,7 +125,7 @@ Page({
             let goods = this.data.goods;
             goods[e.currentTarget.dataset.index].num -= 1;
             this.setData({goods: goods})
-        }).finally(this.calculateTotalPrice());
+        }).finally(() => this.calculateTotalPrice());
     },
 
     ReduceLike(e) {
@@ -127,7 +143,7 @@ Page({
                 let goods = this.data.goods;
                 goods[e.currentTarget.dataset.index].num += 1;
                 this.setData({goods: goods})
-            }).finally(this.calculateTotalPrice());
+            }).finally(() => this.calculateTotalPrice());
         }
 
     },
@@ -138,9 +154,17 @@ Page({
         }).then(res => {
             this.setData({
                 goods: res.data
-            }).finally(this.calculateTotalPrice());
-        })
+            })
+        }).finally(() => this.calculateTotalPrice());
     },
 
-
+    onShow() {
+        API.hasDefaultAddr({
+            openId: APP.globalData.user.openId,
+        }).then(res => {
+            this.setData({
+                hasDefaultAddr: res.data
+            })
+        })
+    }
 })

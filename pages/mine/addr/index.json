@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "l-empty":"../../../../components/empty/index"
+    "l-empty":"../../../../components/empty/index",
+    "van-tag": "@vant/weapp/tag/index"
   }
 }

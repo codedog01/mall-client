@@ -4,11 +4,11 @@
     <van-card wx:for="{{goods}}"  price="{{item.price}}" desc="{{item.describle}}" title="{{item.name}}"
               thumb="{{item.images[0] }}">
         <view class="footer" slot="footer">
-            <van-button size="mini" bind:tap="AddLike" data-likes_id="{{item.id}}" data-index="{{index}}">+</van-button>
+            <van-button size="mini" bind:tap="ReduceLike" data-likes_id="{{item.id}}" data-index="{{index}}">-</van-button>
             <view class="text-df text-bold  " style="width: 70rpx;height: 22px;line-height: 22px;text-align: center">
                 {{item.num}}
             </view>
-            <van-button size="mini" bind:tap="ReduceLike" data-likes_id="{{item.id}}" data-index="{{index}}">-</van-button>
+            <van-button size="mini" bind:tap="AddLike" data-likes_id="{{item.id}}" data-index="{{index}}">+</van-button>
         </view>
     </van-card>
 </scroll-view>
@@ -19,7 +19,7 @@
         tip="{{ true }}"
 >
     <van-tag type="primary" color="#f0a1a8" text-color="#7c1823">{{discount}}</van-tag>
-    <view slot="tip">您还没有填写收货地址, <text>点击填写地址</text></view>
+    <view wx:if="{{!hasDefaultAddr}}" slot="tip">您还没有选择收货地址, <text bind:tap="navigateToAddr">点击填写地址</text></view>
 </van-submit-bar>
 
 <l-toast id="toast"></l-toast>

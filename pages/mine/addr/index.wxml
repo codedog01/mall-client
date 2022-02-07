@@ -1,18 +1,20 @@
 <scroll-view style="height: 90vh;" scroll-y='true' enable-flex="true"
-             refresher-enabled='true'  bindrefresherrefresh="onPullDownRefresh"  refresher-triggered="{{refresherTriggered}}">
+             refresher-enabled='true' bindrefresherrefresh="onPullDownRefresh"
+             refresher-triggered="{{refresherTriggered}}">
     <l-empty data="{{addressList}}"></l-empty>
-    <view wx:for="{{addressList}}">
-        <view class="cu-list menu-avatar">
-            <view class="cu-item">
-                <view class="cu-avatar round lg" style="background-image:url();">{{item.name}}</view>
-                <view class="content flex-sub">
-                    <view>{{item.userName}} <text class="text-gray text-sm">123231</text></view>
-                    <view class=" flex justify-between">
-                        {{item.province}} {{item.city}} {{item.counties}} {{item.detail}}
-                    </view>
+    <view class="cu-list menu-avatar" wx:for="{{addressList}}">
+        <view class="cu-item" data-id="{{item.id}}" bind:tap="routingDetail">
+            <view class="cu-avatar round lg" style="background-color: #f1c4cd;">{{item.name}}</view>
+            <view class="content flex-sub" style="line-height: 1.6em">
+                    <text>{{item.userName}}</text>
+                    <text class="text-gray margin-left-sm">{{item.phone}}</text>
+                    <van-tag wx:if="{{item.isDefault}}" class="margin-left" type="warning">
+                        默认
+                    </van-tag>
+                <view class=" flex justify-between">
+                    {{item.province}} {{item.city}} {{item.counties}} {{item.detail}}
                 </view>
             </view>
         </view>
     </view>
-
 </scroll-view>

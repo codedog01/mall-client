@@ -91,3 +91,8 @@ export function selectAllAddr(data) {
 export function selectOneAddr(data) {
     return request.get(domain + "address/selectOneAddr", data)
 }
+
+// 查询是否存在默认地址
+export function hasDefaultAddr(data) {
+    return request.get(domain + "likes/hasDefaultAddr", data)
+}

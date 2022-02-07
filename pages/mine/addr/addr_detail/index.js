@@ -11,6 +11,28 @@ Page({
         region: ['北京市', '北京市', '东城区'],
     },
 
+    onLoad(query) {
+        const _this = this
+        const eventChannel = this.getOpenerEventChannel();
+        eventChannel.on('addrData', (resData) => {
+            API.selectOneAddr({addressId: resData.addrId}).then(res => {
+                let region = []
+                region.push(res.data.province)
+                region.push(res.data.city);
+                region.push(res.data.counties)
+                const data = {
+                    id: res.data.id,
+                    userName: res.data.userName,
+                    phone: res.data.phone,
+                    detail: res.data.detail,
+                    isDefault: res.data.isDefault,
+                    region: region
+                };
+                _this.setData(data)
+            })
+        })
+    },
+
     onReady() {
         this.toast = this.selectComponent("#toast");
     },
@@ -19,7 +41,8 @@ Page({
     },
 
     Submit() {
-        API.addAddress({
+        const data = {
+            id: this.data.id,
             openId: APP.globalData.user.openId,
             userName: this.data.userName,
             phone: this.data.phone,
@@ -28,20 +51,38 @@ Page({
             province: this.data.region[0],
             city: this.data.region[1],
             counties: this.data.region[2],
-        }).then(() => {
-            this.toastClick(true, "添加成功~")
-            let fun = () => {
-                wx.switchTab({
-                    url: "../index"
+        }
+        if (this.data.id) {
+            API.updateAddress(data).then(() => {
+                this.toastClick(true, "添加成功~")
+                let fun = () => {
+                    wx.navigateBack({
+                        delta: 1
+                    })
+                };
+                let sleep = (time) => new Promise((resolve) => {
+                    setTimeout(resolve, time)
                 })
-            };
-            let sleep = (time) => new Promise((resolve) => {
-                setTimeout(resolve, time)
-            })
-            sleep(1200).then(fun);
-        }).catch(() => {
-            this.toastClick(false, "添加失败~")
-        })
+                sleep(500).then(fun);
+            }).catch(() => {
+                this.toastClick(false, "添加失败~")
+            });
+        } else {
+            API.addAddress(data).then(() => {
+                this.toastClick(true, "添加成功~")
+                let fun = () => {
+                    wx.navigateBack({
+                        delta: 1
+                    })
+                };
+                let sleep = (time) => new Promise((resolve) => {
+                    setTimeout(resolve, time)
+                })
+                sleep(500).then(fun);
+            }).catch(() => {
+                this.toastClick(false, "添加失败~")
+            });
+        }
     },
 
     IsDefaultChange() {
