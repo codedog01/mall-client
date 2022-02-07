@@ -1,4 +1,4 @@
-<swiper style="" autoplay indicator-dots circular>
+<swiper autoplay indicator-dots circular>
     <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
         <view style="height: 100%; background-image: url({{item}});"></view>
     </swiper-item>
