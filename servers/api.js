@@ -1,4 +1,3 @@
-
 const request = require("./request.js")
 var app = getApp();
 //项目URL相同部分，减轻代码量，同时方便项目迁移
@@ -68,3 +67,27 @@ export function doDeal(data) {
     return request.get(domain + "likes/doDeal", data)
 }
 
+// 添加新地址
+export function addAddress(data) {
+    return request.post(domain + "address/addAddress", data)
+}
+
+// 修改地址
+export function updateAddress(data) {
+    return request.post(domain + "address/updateAddress", data)
+}
+
+// 删除地址
+export function delAddress(data) {
+    return request.get(domain + "address/delAddress", data)
+}
+
+// 查询所有地址
+export function selectAllAddr(data) {
+    return request.get(domain + "address/selectAllAddr", data)
+}
+
+// 查询某个地址
+export function selectOneAddr(data) {
+    return request.get(domain + "address/selectOneAddr", data)
+}

@@ -2,6 +2,7 @@
   "usingComponents": {
     "l-input":"../../../../components/input/index",
     "l-picker":"../../../../components/picker/index",
+    "l-toast":"../../../../components/toast/index",
     "van-button": "@vant/weapp/button/index"
   }
 }
