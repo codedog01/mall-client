@@ -7,11 +7,16 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        swiperList:[
+            "./img/swiper/1.png",
+            "./img/swiper/2.png",
+            "./img/swiper/3.png",
+            "./img/swiper/4.png"
+        ],
         activeKey: 1,
         commodity: []
     },
-    onLoad() {
+    onShow() {
         let data = {
             commodity: this.data.commodity,
         }

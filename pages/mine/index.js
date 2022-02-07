@@ -13,7 +13,7 @@ Page({
         nickName: '游客B627'
     },
     // avatarImage: this.data.avatarImage,
-    onLoad() {
+    onShow() {
         API.getUserInfo({
             openId: APP.globalData.user.openId
         }).then(res=>{

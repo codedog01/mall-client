@@ -1,3 +1,4 @@
+const API=require("./servers/api")
 App({
   onLaunch(e) {
     let user = this.globalData.user
