@@ -1,3 +1,5 @@
+import {domain} from "../../servers/api";
+
 const APP = getApp()
 const imgUtil = require("../../utils/imgUtil")
 const API = require("../../servers/api")
@@ -39,7 +41,8 @@ Page({
                 })
                 //上传图片
                 wx.uploadFile({
-                    url: "http://localhost:8080/api/user/uploadAvatar",
+
+                    url: API.domain+"user/uploadAvatar",
                     filePath: tempFilePaths,
                     name: 'avatarImage',
                     formData: {

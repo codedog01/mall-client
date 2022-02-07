@@ -13,7 +13,7 @@ App({
             var userInfo = res.userInfo
             wx.request({
               method: "POST",
-              url: 'http://localhost:8080/api/user/login',
+              url: API.domain+'user/login',
               data: {
                 code: code,
                 nickName: userInfo.nickName,
