@@ -1,8 +1,8 @@
 const request = require("./request.js")
 //本地环境
-const local = 'http://localhost:8080/api/'
+const local = 'http://localhost:8585/api/'
 //测试环境
-const dev = 'http://1.15.184.191:8080/api/'
+const dev = 'http://121.43.163.177:8585/api/'
 
 export const domain = local;
 

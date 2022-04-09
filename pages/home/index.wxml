@@ -5,46 +5,33 @@
 </swiper>
 
 <van-grid column-num="4" border="{{ false }}">
-    <van-grid-item use-slot >
-        <image
-                style="width: 100%; height: 90px;"
-                src="https://img.yzcdn.cn/vant/apple-1.jpg"
-        />
+    <van-grid-item use-slot>
+        <image style="width: 100%; height: 90px;" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
     </van-grid-item>
-    <van-grid-item use-slot >
-        <image
-                style="width: 100%; height: 90px;"
-                src="https://img.yzcdn.cn/vant/apple-2.jpg"
-        />
+    <van-grid-item use-slot>
+        <image style="width: 100%; height: 90px;" src="https://img.yzcdn.cn/vant/apple-2.jpg" />
     </van-grid-item>
-    <van-grid-item use-slot >
-        <image
-                style="width: 100%; height: 90px;"
-                src="https://img.yzcdn.cn/vant/apple-3.jpg"
-        />
+    <van-grid-item use-slot>
+        <image style="width: 100%; height: 90px;" src="https://img.yzcdn.cn/vant/apple-3.jpg" />
     </van-grid-item>
-    <van-grid-item use-slot >
-        <image
-                style="width: 100%; height: 90px;"
-                src="https://img.yzcdn.cn/vant/apple-4.jpg"
-        />
+    <van-grid-item use-slot>
+        <image style="width: 100%; height: 90px;" src="https://img.yzcdn.cn/vant/apple-4.jpg" />
     </van-grid-item>
 </van-grid>
 <view style="height: 60vh;display: flex; justify-content: space-around;">
-    <view style="height: 60vh;width:20%;">
+    <view style="height: 100%;width:20%;">
         <van-sidebar active-key="{{ activeKey-1 }}">
-            <van-sidebar-item wx:for="{{commodity}}" wx:key="idx" bind:tap="ChangeBar" title="{{item.label.name}}"
-                              data-index="{{item.label.idx}}"/>
+            <van-sidebar-item wx:for="{{commodity}}" wx:key="idx" bind:tap="ChangeBar" title="{{item.label.name}}" data-index="{{item.label.idx}}" />
         </van-sidebar>
     </view>
-    <view style=" height: 60vh;width: 80%;">
+    <view style=" height: 100%;width: 80%;">
         <swiper current="{{activeKey-1}}" style="height: 100%">
             <swiper-item wx:for="{{commodity}}" indicator-dots="false" autoplay="false">
-                <van-card num="{{item.num}}" tag="火爆" price="{{item.price}}" desc="{{item.describle}}"
-                          title="{{item.name}}" thumb="{{item.thumb[0] }}" wx:for="{{item.goods}}"
-                          data-goods_id="{{item.id}}" bind:tap="goodsNavigateTo">
-                </van-card>
-                <l-empty data="{{item.goods}}"></l-empty>
+                <scroll-view scroll-y="true" style="height: 60vh;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+                    <van-card num="{{item.num}}" tag="火爆" price="{{item.price}}" desc="{{item.describle}}" title="{{item.name}}" thumb="{{item.thumb[0] }}" wx:for="{{item.goods}}" data-goods_id="{{item.id}}" bind:tap="goodsNavigateTo">
+                    </van-card>
+                    <l-empty data="{{item.goods}}"></l-empty>
+                </scroll-view>
             </swiper-item>
         </swiper>
     </view>
