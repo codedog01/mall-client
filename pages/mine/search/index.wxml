@@ -1,6 +1,6 @@
 <van-cell-group>
   <van-field
-          model:value="{{ name }}"
+          model:value="{{ title }}"
     label="标题"
     placeholder="标题"
   />
